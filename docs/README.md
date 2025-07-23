@@ -149,7 +149,7 @@ VidFlowDesktop/
 
 如有问题或建议，请通过以下方式联系：
 
-- 📧 Email: your.email@example.com
+- 📧 Email: 2811016860@qq.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/VidFlowDesktop/issues)
 
 ---
