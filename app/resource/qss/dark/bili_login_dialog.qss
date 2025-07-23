@@ -1,0 +1,31 @@
+/* 哔哩哔哩登录对话框 - 暗色主题 */
+
+/* 副标题 */
+#subtitle {
+    color: #a0a0a0;
+}
+
+/* 二维码标签不同状态 */
+#qrLabel[status="waiting"] {
+    border: 2px dashed #484848;
+    border-radius: 10px;
+    background-color: #2d2d2d;
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+#qrLabel[status="scanned"] {
+    border: 2px solid #52C41A;
+    border-radius: 10px;
+    background-color: #162312;
+    color: #52C41A;
+    font-size: 14px;
+}
+
+#qrLabel[status="expired"] {
+    border: 2px dashed #484848;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    color: #666;
+    font-size: 14px;
+}

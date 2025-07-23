@@ -1,0 +1,35 @@
+PrimaryPushButton#downloadVideoBtn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #3b82f6, stop:1 #8b5cf6);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+PrimaryPushButton#downloadAudioBtn {
+    border: 1px solid rgb(16, 185, 129);
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+PrimaryPushButton#downloadVideoBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #2563eb, stop:1 #7c3aed);
+}
+
+PrimaryPushButton#downloadVideoBtn:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #1d4ed8, stop:1 #6d28d9);
+}
+
+PrimaryPushButton#downloadVideoBtn:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 rgba(59, 130, 246, 0.4), stop:1 rgba(139, 92, 246, 0.4));
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 12px;
+}

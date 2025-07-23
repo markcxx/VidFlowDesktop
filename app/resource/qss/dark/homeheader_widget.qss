@@ -1,0 +1,12 @@
+HomeHeaderWidget > QWidget#badgewidget{
+    background: rgba(31, 41, 55, 1);
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.8);
+}
+
+#badgeLabel{
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+

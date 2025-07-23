@@ -1,0 +1,49 @@
+LineEdit#SearchLineEdit {
+    font-size: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 0 16px;
+    background-color: white;
+    color: black;
+}
+
+LineEdit#SearchLineEdit:focus {
+    border: 2px solid #3b82f6;
+    border-bottom: 2px solid #3b82f6;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+LineEdit#SearchLineEdit:hover {
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 2px solid #3b82f6;
+    border-bottom: 2px solid #3b82f6;
+    color: black;
+}
+
+PrimaryPushButton#SearchButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #3b82f6, stop:1 #8b5cf6);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+PrimaryPushButton#SearchButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #2563eb, stop:1 #7c3aed);
+}
+
+PrimaryPushButton#SearchButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #1d4ed8, stop:1 #6d28d9);
+}
+
+PrimaryPushButton#SearchButton:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 rgba(59, 130, 246, 0.4), stop:1 rgba(139, 92, 246, 0.4));
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 12px;
+}

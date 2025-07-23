@@ -1,0 +1,14 @@
+ScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+HomeInterface, #scrollWidget {
+    background-color: rgb(39, 39, 39);
+}
+
+#badgeWidget {
+    background-color: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+}

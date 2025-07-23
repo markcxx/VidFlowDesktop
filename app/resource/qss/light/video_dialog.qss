@@ -1,0 +1,89 @@
+ScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+QWidget#scrollWidget {
+    background-color: rgb(248, 249, 250);
+}
+
+VideoQualityDialog#videoQualityDialog {
+    background-color: rgb(255, 255, 255);
+}
+
+/* VideoQualityCard 样式 */
+VideoQualityCard {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 8px;
+}
+
+VideoQualityCard:hover {
+    background-color: rgb(249, 250, 251);
+    border-color: rgb(209, 213, 219);
+}
+
+/* 质量标识区域 */
+QFrame#qualityFrame {
+    border-radius: 8px;
+    border: none;
+}
+
+/* 质量框架不同类型的背景色 */
+QFrame#qualityFrame[qualityType="high"] {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #8b5cf6, stop:1 #a855f7);
+}
+
+QFrame#qualityFrame[qualityType="medium"] {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #3b82f6, stop:1 #60a5fa);
+}
+
+QFrame#qualityFrame[qualityType="audio"] {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f59e0b, stop:1 #fbbf24);
+}
+
+QFrame#qualityFrame[qualityType="low"] {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #10b981, stop:1 #34d399);
+}
+
+/* 质量文本 */
+QLabel#qualityText {
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* 分辨率标签 */
+StrongBodyLabel#resolutionLabel {
+    color: rgb(31, 41, 55);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* FPS标签 */
+CaptionLabel#fpsLabel {
+    color: rgb(107, 114, 128);
+    background-color: rgb(243, 244, 246);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+/* 详细信息标签 */
+CaptionLabel#detailsLabel {
+    color: rgb(156, 163, 175);
+    font-size: 12px;
+}
+
+/* 文件大小标签 */
+StrongBodyLabel#sizeLabel {
+    color: rgb(31, 41, 55);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 格式标签 */
+CaptionLabel#formatLabel {
+    color: rgb(107, 114, 128);
+    font-size: 11px;
+}

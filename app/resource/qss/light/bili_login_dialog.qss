@@ -1,0 +1,15 @@
+/* 哔哩哔哩登录对话框 - 亮色主题 */
+
+/* 副标题 */
+#subtitle {
+    color: #666;
+}
+
+/* 二维码标签不同状态 */
+#qrLabel[status="waiting"] {
+    border: 2px dashed #E0E0E0;
+    border-radius: 10px;
+    background-color: #F8F9FA;
+    color: #666;
+    font-size: 14px;
+}

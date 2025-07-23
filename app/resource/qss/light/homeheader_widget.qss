@@ -1,0 +1,13 @@
+HomeHeaderWidget > QWidget#badgewidget{
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 rgba(59, 130, 246, 0.1), stop:1 rgba(139, 92, 246, 0.1));
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+#badgeLabel{
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+
