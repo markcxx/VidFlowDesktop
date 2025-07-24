@@ -304,7 +304,7 @@ class MainWindow(FramelessWindow):
         w.cancelButton.setText('下次一定')
 
         if w.exec():
-            QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
+            QDesktopServices.openUrl(QUrl("https://ifdian.net/a/markingchen"))
 
     def showDialog(self):
         self.custom_w = CustomMessageBox(self)

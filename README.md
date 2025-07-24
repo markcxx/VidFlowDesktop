@@ -16,7 +16,8 @@
 <p align="center">
   一个基于 PyQt5 和 QFluentWidgets 的现代化多平台视频下载工具，支持抖音、B站等主流视频平台的高质量视频下载。
 </p>
-## ✨ 特性
+
+## 功能介绍
 
 - 🎯 **多平台支持** - 支持抖音、B站等主流视频平台
 - 🎨 **现代化界面** - 基于 QFluentWidgets 设计语言的美观界面
@@ -152,7 +153,7 @@ VidFlowDesktop/
 如有问题或建议，请通过以下方式联系：
 
 - 📧 Email: 2811016860@qq.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/VidFlowDesktop/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/markcxx/VidFlowDesktop/issues)
 
 ---
 

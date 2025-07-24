@@ -379,7 +379,7 @@ class BilibiliDownloadThread(QThread):
     def _merge_video_audio_sync(self, video_path, audio_path, output_path):
         """使用FFmpeg合并视频和音频"""
 
-        ffmpeg_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'resource', 'ffmpeg', 'bin', 'ffmpeg.exe')
+        ffmpeg_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'ffmpeg', 'ffmpeg.exe')
         
         if not os.path.exists(ffmpeg_path):
             raise Exception("FFmpeg未找到")
