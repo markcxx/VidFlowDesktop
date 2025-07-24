@@ -68,7 +68,7 @@ class Config(QConfig):
     cacheFolder = ConfigItem(
         "Folders", "Cache", tempfile.gettempdir(), FolderValidator())
     downloadFolder = ConfigItem(
-        "Folders", "Download", Path(os.environ['USERPROFILE']) / 'Downloads', FolderValidator())
+        "Folders", "Download", Path.home() / 'Downloads', FolderValidator())
 
     # dpiScale
     dpiScale = OptionsConfigItem(
