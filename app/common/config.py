@@ -1,4 +1,5 @@
 import os
+import sys
 import tempfile
 from enum import Enum
 from pathlib import Path
@@ -15,8 +16,13 @@ COPYRIGHT = "Mark"
 APP_URL = "https://vidflow.markqq.com"
 CONTACT_EMAIL = "2811016860@qq.com"
 
-# 获取应用程序配置目录（Windows Roaming目录）
-CONFIG_DIR = Path(os.environ['APPDATA']) / APP_NAME
+# 获取应用程序配置目录（跨平台兼容）
+if sys.platform == "win32":
+    CONFIG_DIR = Path(os.environ['APPDATA']) / APP_NAME
+elif sys.platform == "darwin":
+    CONFIG_DIR = Path.home() / "Library" / "Application Support" / APP_NAME
+else:
+    CONFIG_DIR = Path.home() / ".config" / APP_NAME
 
 # 确保配置目录存在
 CONFIG_DIR.mkdir(parents=True, exist_ok=True)
