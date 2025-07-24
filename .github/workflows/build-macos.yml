@@ -17,6 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install nuitka
           pip install -r requirements.txt
 
       - name: Get version
