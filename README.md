@@ -10,14 +10,16 @@
   <img src="https://img.shields.io/badge/Version-1.0.0-red.svg" alt="Version">
 </div>
 
-# 🎬 VidFlow Desktop
-
-一个基于 PyQt5 和 Fluent Widgets 的现代化多平台视频下载工具，支持抖音、B站等主流视频平台的高质量视频下载。
-
+<h1 align="center">
+  VidFlow Desktop
+</h1>
+<p align="center">
+  一个基于 PyQt5 和 QFluentWidgets 的现代化多平台视频下载工具，支持抖音、B站等主流视频平台的高质量视频下载。
+</p>
 ## ✨ 特性
 
 - 🎯 **多平台支持** - 支持抖音、B站等主流视频平台
-- 🎨 **现代化界面** - 基于 Fluent Design 设计语言的美观界面
+- 🎨 **现代化界面** - 基于 QFluentWidgets 设计语言的美观界面
 - 📱 **多质量选择** - 支持多种视频质量和格式选择
 - 🔐 **B站登录** - 支持B站账号登录，下载更高质量视频
 - 📊 **实时进度** - 实时显示下载进度和状态
@@ -143,6 +145,7 @@ VidFlowDesktop/
 ## ⚠️ 免责声明
 
 本工具仅供学习和研究使用，请遵守相关平台的服务条款和版权法律法规。用户应对使用本工具产生的任何后果承担责任。
+版权所有 © 2025 mark.
 
 ## 📞 联系方式
 
