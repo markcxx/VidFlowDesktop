@@ -1,0 +1,325 @@
+name: Build macOS
+
+# 触发条件：手动触发或推送标签时
+on:
+  workflow_dispatch:
+    inputs:
+      architecture:
+        description: 'Target architecture'
+        required: true
+        default: 'arm64'
+        type: choice
+        options:
+        - arm64
+        - x86_64
+        - both
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-macos:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: arm64
+            runner: macos-14  # Apple Silicon
+          - architecture: x86_64
+            runner: macos-13  # Intel
+    runs-on: ${{ matrix.runner }}
+    if: ${{ github.event.inputs.architecture == matrix.architecture || github.event.inputs.architecture == 'both' || github.event_name == 'push' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          # 安装必要的系统依赖
+          brew install create-dmg
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install nuitka ordered-set
+          pip install -r requirements.txt
+
+      - name: Get version from config
+        id: get_version
+        run: |
+          VERSION=$(python3 -c "from app.common.config import VERSION; print(VERSION)")
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "📦 Building version: ${VERSION}"
+
+      - name: Create app icon (if not exists)
+        run: |
+          # 创建一个简单的应用图标（如果不存在的话）
+          mkdir -p app/resource/images
+          if [ ! -f "app/resource/images/logo.icns" ]; then
+            echo "⚠️ Creating placeholder icon..."
+            # 创建一个简单的图标占位符
+            sips -s format icns /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericApplicationIcon.icns --out app/resource/images/logo.icns
+          fi
+
+      - name: Build with Nuitka
+        run: |
+          echo "🔨 Starting Nuitka build..."
+          python3 -m nuitka \
+            --standalone \
+            --plugin-enable=pyqt5 \
+            --include-qt-plugins=sensible,sqldrivers \
+            --show-memory \
+            --show-progress \
+            --macos-create-app-bundle \
+            --assume-yes-for-downloads \
+            --macos-disable-console \
+            --macos-app-version="${{ env.VERSION }}" \
+            --macos-app-name="VidFlowDesktop" \
+            --macos-app-icon="app/resource/images/logo.icns" \
+            --copyright="${{ env.VERSION }} Mark" \
+            --output-dir=dist \
+            VidFlowDesktop.py
+          
+          echo "✅ Nuitka build completed"
+
+      - name: Set executable permissions
+        run: |
+          chmod u+x "dist/VidFlowDesktop.app/Contents/MacOS/VidFlowDesktop"
+          echo "✅ Executable permissions set"
+
+      - name: Clean build artifacts
+        run: |
+          rm -rf "dist/VidFlowDesktop.build"
+          echo "🧹 Build artifacts cleaned"
+
+      - name: Download FFmpeg for macOS
+        run: |
+          echo "📥 Downloading FFmpeg for macOS..."
+          
+          # 创建FFmpeg目录
+          mkdir -p "dist/VidFlowDesktop.app/Contents/MacOS/ffmpeg"
+          
+          # 下载FFmpeg静态构建版本
+          if [ "${{ matrix.architecture }}" == "arm64" ]; then
+            FFMPEG_URL="https://evermeet.cx/ffmpeg/getrelease/zip"
+          else
+            FFMPEG_URL="https://evermeet.cx/ffmpeg/getrelease/zip"
+          fi
+          
+          # 下载并解压FFmpeg
+          curl -L "$FFMPEG_URL" -o "/tmp/ffmpeg.zip"
+          unzip -o "/tmp/ffmpeg.zip" -d "/tmp/ffmpeg_extract"
+          
+          # 复制FFmpeg到应用包中
+          cp "/tmp/ffmpeg_extract/ffmpeg" "dist/VidFlowDesktop.app/Contents/MacOS/ffmpeg/ffmpeg"
+          chmod +x "dist/VidFlowDesktop.app/Contents/MacOS/ffmpeg/ffmpeg"
+          
+          # 清理临时文件
+          rm -rf "/tmp/ffmpeg.zip" "/tmp/ffmpeg_extract"
+          
+          echo "✅ FFmpeg downloaded and installed"
+
+      - name: Update FFmpeg path in app
+        run: |
+          echo "🔧 Updating FFmpeg path for macOS..."
+          
+          # 创建一个临时的Python脚本来修改FFmpeg路径
+          cat > update_ffmpeg_path.py << 'EOF'
+          import os
+          import re
+          
+          # 读取threadManager.py文件
+          thread_manager_path = "dist/VidFlowDesktop.app/Contents/MacOS/app/common/threadManager.py"
+          
+          if os.path.exists(thread_manager_path):
+              with open(thread_manager_path, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              
+              # 替换FFmpeg路径为macOS版本
+              # 将 'ffmpeg.exe' 替换为 'ffmpeg'
+              content = content.replace("'ffmpeg', 'ffmpeg.exe'", "'ffmpeg', 'ffmpeg'")
+              content = content.replace('"ffmpeg", "ffmpeg.exe"', '"ffmpeg", "ffmpeg"')
+              
+              # 写回文件
+              with open(thread_manager_path, 'w', encoding='utf-8') as f:
+                  f.write(content)
+              
+              print("✅ FFmpeg path updated for macOS")
+          else:
+              print("⚠️ threadManager.py not found in expected location")
+          EOF
+          
+          python3 update_ffmpeg_path.py
+
+      - name: Verify app structure
+        run: |
+          echo "🔍 Verifying app structure..."
+          ls -la "dist/VidFlowDesktop.app/Contents/MacOS/"
+          
+          if [ -f "dist/VidFlowDesktop.app/Contents/MacOS/VidFlowDesktop" ]; then
+            echo "✅ Main executable found"
+          else
+            echo "❌ Main executable not found"
+            exit 1
+          fi
+          
+          if [ -f "dist/VidFlowDesktop.app/Contents/MacOS/ffmpeg/ffmpeg" ]; then
+            echo "✅ FFmpeg found"
+          else
+            echo "⚠️ FFmpeg not found"
+          fi
+
+      - name: Create DMG installer
+        run: |
+          echo "📦 Creating DMG installer..."
+          
+          # 创建临时目录用于DMG内容
+          mkdir -p dmg_temp
+          
+          # 复制应用到临时目录
+          cp -R "dist/VidFlowDesktop.app" dmg_temp/
+          
+          # 创建Applications链接
+          ln -s /Applications dmg_temp/Applications
+          
+          # 使用create-dmg创建DMG
+          create-dmg \
+            --volname "VidFlowDesktop" \
+            --volicon "app/resource/images/logo.icns" \
+            --window-pos 200 120 \
+            --window-size 800 450 \
+            --icon-size 100 \
+            --icon "VidFlowDesktop.app" 200 190 \
+            --hide-extension "VidFlowDesktop.app" \
+            --app-drop-link 600 185 \
+            --hdiutil-quiet \
+            "VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg" \
+            dmg_temp/
+          
+          # 如果create-dmg失败，使用hdiutil作为备选
+          if [ ! -f "VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg" ]; then
+            echo "⚠️ create-dmg failed, using hdiutil..."
+            
+            hdiutil create -srcfolder dmg_temp \
+              -volname "VidFlowDesktop" \
+              -fs HFS+ \
+              -fsargs "-c c=64,a=16,e=16" \
+              -format UDZO \
+              -size 400m \
+              "VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg"
+          fi
+          
+          # 清理临时目录
+          rm -rf dmg_temp
+          
+          echo "✅ DMG created successfully"
+
+      - name: Verify DMG
+        run: |
+          if [ -f "VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg" ]; then
+            echo "✅ DMG file created: VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg"
+            ls -lh "VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg"
+          else
+            echo "❌ DMG file not found"
+            exit 1
+          fi
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}
+          path: VidFlowDesktop-v${{ env.VERSION }}-macOS-${{ matrix.architecture }}.dmg
+          retention-days: 30
+
+  # 创建GitHub Release（仅在推送标签时）
+  create-release:
+    needs: build-macos
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: |
+          VERSION=$(echo ${GITHUB_REF#refs/tags/v})
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: VidFlowDesktop v${{ env.VERSION }}
+          body: |
+            ## VidFlowDesktop v${{ env.VERSION }} - macOS版本
+            
+            ### 🎉 新功能
+            - 多平台视频下载支持
+            - 支持抖音、B站等主流平台
+            - 现代化的Fluent Design界面
+            
+            ### 📱 macOS支持
+            - ✅ Apple Silicon (M1/M2/M3) 原生支持
+            - ✅ Intel处理器兼容
+            - ✅ macOS 10.15+ (Catalina或更高版本)
+            
+            ### 📥 下载说明
+            - **Apple Silicon Mac**: 下载 `VidFlowDesktop-v${{ env.VERSION }}-macOS-arm64.dmg`
+            - **Intel Mac**: 下载 `VidFlowDesktop-v${{ env.VERSION }}-macOS-x86_64.dmg`
+            
+            ### 🛠️ 安装说明
+            1. 下载对应架构的DMG文件
+            2. 双击DMG文件打开
+            3. 将VidFlowDesktop拖拽到Applications文件夹
+            4. 首次运行可能需要在"系统偏好设置 > 安全性与隐私"中允许运行
+            
+            ### ⚠️ 安全提示
+            如果遇到"应用已损坏"的提示，请在终端中执行：
+            ```bash
+            sudo xattr -rd com.apple.quarantine /Applications/VidFlowDesktop.app
+            ```
+            
+            ---
+            
+            **完整更新日志**: https://github.com/${{ github.repository }}/compare/v${{ env.VERSION }}...v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Upload macOS ARM64 Release Asset
+        if: hashFiles('artifacts/VidFlowDesktop-v*-macOS-arm64/*.dmg') != ''
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/VidFlowDesktop-v${{ env.VERSION }}-macOS-arm64/VidFlowDesktop-v${{ env.VERSION }}-macOS-arm64.dmg
+          asset_name: VidFlowDesktop-v${{ env.VERSION }}-macOS-arm64.dmg
+          asset_content_type: application/x-apple-diskimage
+
+      - name: Upload macOS x86_64 Release Asset
+        if: hashFiles('artifacts/VidFlowDesktop-v*-macOS-x86_64/*.dmg') != ''
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/VidFlowDesktop-v${{ env.VERSION }}-macOS-x86_64/VidFlowDesktop-v${{ env.VERSION }}-macOS-x86_64.dmg
+          asset_name: VidFlowDesktop-v${{ env.VERSION }}-macOS-x86_64.dmg
+          asset_content_type: application/x-apple-diskimage

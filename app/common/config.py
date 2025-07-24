@@ -7,8 +7,15 @@ from PyQt5.QtCore import QLocale
 from qfluentwidgets import ConfigItem, OptionsConfigItem, OptionsValidator, BoolValidator, FolderValidator, \
     FolderListValidator, QConfig, ConfigSerializer, setTheme, Theme, qconfig
 
-# 获取应用程序配置目录（Windows Roaming目录）
+# 应用程序信息
 APP_NAME = "VidFlowDesktop"
+VERSION = "1.0.0"
+AUTHOR = "Mark"
+COPYRIGHT = "Mark"
+APP_URL = "https://vidflow.markqq.com"
+CONTACT_EMAIL = "2811016860@qq.com"
+
+# 获取应用程序配置目录（Windows Roaming目录）
 CONFIG_DIR = Path(os.environ['APPDATA']) / APP_NAME
 
 # 确保配置目录存在
