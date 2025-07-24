@@ -13,6 +13,8 @@ if sys.platform == "darwin":
         '--standalone',
         '--plugin-enable=pyqt5',
         '--include-qt-plugins=sensible,styles',
+        '--show-memory',
+        '--show-progress',
         '--assume-yes-for-downloads',
         '--deployment',
         "--macos-create-app-bundle",
