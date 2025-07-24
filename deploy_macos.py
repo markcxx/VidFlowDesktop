@@ -4,17 +4,15 @@
 macOS部署脚本 - 使用Nuitka构建VidFlowDesktop
 """
 
-import os
+import subprocess
 import sys
 
 if sys.platform == "darwin":
     args = [
-        'python3 -m nuitka',
+        'python3', '-m', 'nuitka',
         '--standalone',
         '--plugin-enable=pyqt5',
         '--include-qt-plugins=sensible,styles',
-        '--show-memory',
-        '--show-progress',
         '--assume-yes-for-downloads',
         '--deployment',
         "--macos-create-app-bundle",
@@ -30,4 +28,4 @@ else:
     print("This script is only for macOS")
     sys.exit(1)
 
-os.system(' '.join(args))
+subprocess.run(args, check=True)
