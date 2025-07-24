@@ -6,7 +6,6 @@ macOS部署脚本 - 使用Nuitka构建VidFlowDesktop
 
 import os
 import sys
-from app.common.config import VERSION
 
 if sys.platform == "darwin":
     args = [
@@ -18,7 +17,7 @@ if sys.platform == "darwin":
         '--deployment',
         "--macos-create-app-bundle",
         "--macos-disable-console",
-        f"--macos-app-version={VERSION}",
+        f"--macos-app-version=1.0.0",
         "--macos-app-name=VidFlowDesktop",
         "--macos-app-icon=app/resource/images/logo.icns",
         "--copyright=VidFlowDesktop Team",
