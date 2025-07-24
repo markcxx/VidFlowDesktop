@@ -1,0 +1,108 @@
+================================================================================
+                        VIDFLOW DESKTOP SOFTWARE LICENSE AGREEMENT
+================================================================================
+
+Copyright (c) 2025 Mark. All rights reserved.
+
+Author: Mark
+Contact: 2811016860@qq.com
+Official Website: https://vidflow.markqq.com
+
+================================================================================
+                                ENGLISH VERSION
+================================================================================
+
+END-USER LICENSE AGREEMENT (EULA)
+
+This End-User License Agreement ("EULA") is a legal agreement between you (either an individual or a single entity) and Mark ("Author") for the VidFlow Desktop software product ("Software"). By installing, copying, or otherwise using the Software, you agree to be bound by the terms of this EULA.
+
+1. GRANT OF LICENSE
+Subject to the terms and conditions of this EULA, the Author grants you a limited, non-exclusive, non-transferable license to use the Software for personal or commercial purposes.
+
+2. RESTRICTIONS
+You may NOT:
+a) Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Software
+b) Modify, adapt, alter, translate, or create derivative works based on the Software
+c) Remove, alter, or obscure any proprietary notices, labels, or marks on the Software
+d) Distribute, sell, lease, rent, lend, or sublicense the Software to third parties
+e) Use the Software for any illegal or unauthorized purpose
+f) Circumvent or disable any security features or copy protection mechanisms
+g) Use the Software in any manner that could damage, disable, overburden, or impair any servers or networks
+
+3. INTELLECTUAL PROPERTY RIGHTS
+The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The Author retains all rights, title, and interest in and to the Software, including all intellectual property rights therein.
+
+4. PRIVACY AND DATA COLLECTION
+The Software may collect anonymous usage statistics to improve user experience. No personal information is collected without explicit consent. For detailed information, please refer to our Privacy Policy at https://vidflow.markqq.com/privacy.
+
+5. DISCLAIMER OF WARRANTIES
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+6. LIMITATION OF LIABILITY
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE.
+
+7. TERMINATION
+This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any term(s) of this EULA.
+
+8. UPDATES AND MODIFICATIONS
+The Author reserves the right to update or modify the Software and this EULA at any time. Continued use of the Software after such changes constitutes acceptance of the new terms.
+
+9. GOVERNING LAW
+This EULA shall be governed by and construed in accordance with the laws of the People's Republic of China.
+
+10. CONTACT INFORMATION
+For questions regarding this EULA, please contact:
+Email: 2811016860@qq.com
+Website: https://vidflow.markqq.com
+
+================================================================================
+                                中文版本
+================================================================================
+
+最终用户许可协议 (EULA)
+
+本最终用户许可协议（"协议"）是您（个人或单一实体）与Mark（"作者"）就VidFlow Desktop软件产品（"软件"）达成的法律协议。通过安装、复制或以其他方式使用本软件，您同意受本协议条款的约束。
+
+1. 许可授权
+在本协议的条款和条件下，作者授予您有限的、非独占的、不可转让的许可，以将软件用于个人或商业目的。
+
+2. 使用限制
+您不得：
+a) 对软件进行逆向工程、反编译、反汇编或以其他方式试图获取软件的源代码
+b) 修改、改编、更改、翻译或基于软件创建衍生作品
+c) 移除、更改或遮蔽软件上的任何专有声明、标签或标记
+d) 向第三方分发、销售、租赁、出租、借出或再许可软件
+e) 将软件用于任何非法或未经授权的目的
+f) 规避或禁用任何安全功能或复制保护机制
+g) 以可能损害、禁用、超载或损害任何服务器或网络的方式使用软件
+
+3. 知识产权
+软件受版权法和国际版权条约以及其他知识产权法律和条约的保护。作者保留软件的所有权利、所有权和利益，包括其中的所有知识产权。
+
+4. 隐私和数据收集
+软件可能收集匿名使用统计信息以改善用户体验。未经明确同意，不会收集个人信息。详细信息请参阅我们的隐私政策：https://vidflow.markqq.com/privacy。
+
+5. 免责声明
+软件按"现状"提供，不提供任何明示或暗示的保证，包括但不限于适销性、特定用途适用性和非侵权的暗示保证。
+
+6. 责任限制
+在任何情况下，作者均不对因使用或无法使用软件而产生的任何特殊、偶然、间接或后果性损害承担责任。
+
+7. 终止
+本许可在终止前一直有效。如果您未能遵守本协议的任何条款，您在本许可下的权利将自动终止，无需通知。
+
+8. 更新和修改
+作者保留随时更新或修改软件和本协议的权利。在此类更改后继续使用软件即表示接受新条款。
+
+9. 适用法律
+本协议应受中华人民共和国法律管辖并按其解释。
+
+10. 联系信息
+有关本协议的问题，请联系：
+电子邮件：2811016860@qq.com
+网站：https://vidflow.markqq.com
+
+================================================================================
+                            版权所有 © 2025 Mark
+                              保留所有权利
+================================================================================
