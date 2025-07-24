@@ -20,10 +20,9 @@ jobs:
           pip install nuitka
           pip install -r requirements.txt
 
-      - name: Get version
+      - name: Set version
         run: |
-          VERSION=$(python3 -c "from app.common.config import VERSION; print(VERSION)")
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "VERSION=1.0.0" >> $GITHUB_ENV
 
       - name: Build with Nuitka
         run: |
