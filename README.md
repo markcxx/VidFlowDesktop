@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="title.jpeg" alt="VidFlow Desktop" width="100%" />
+  <img src="app/resource/images/readme/title.jpeg" alt="VidFlow Desktop" width="100%" />
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python">
+  <img src="https://img.shields.io/badge/Python-3.12-blue.svg" alt="Python">
   <img src="https://img.shields.io/badge/PyQt5-5.15-green.svg" alt="PyQt5">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg" alt="Platform">
@@ -12,7 +12,7 @@
 
 # 🎬 VidFlow Desktop
 
-一个基于 PyQt5 和 Fluent Design 的现代化多平台视频下载工具，支持抖音、B站等主流视频平台的高质量视频下载。
+一个基于 PyQt5 和 Fluent Widgets 的现代化多平台视频下载工具，支持抖音、B站等主流视频平台的高质量视频下载。
 
 ## ✨ 特性
 
@@ -65,14 +65,14 @@
 ## 🖼️ 界面预览
 
 <div align="center">
-  <img src="home_interface.png" alt="VidFlow Desktop" width="100%" />
+  <img src="app/resource/images/readme/home_interface.png" alt="VidFlow Desktop" width="100%" />
 </div>
 
 ## 🚀 快速开始
 
 ### 环境要求
 
-- Python 3.8 或更高版本
+- Python 3.12 或更高版本
 - Windows 10/11, macOS 10.14+, 或 Linux
 
 ### 安装步骤
@@ -127,7 +127,6 @@ VidFlowDesktop/
 │   ├── components/      # UI组件
 │   ├── view/           # 界面视图
 │   └── resource/       # 资源文件
-├── config/             # 配置文件
 ├── VidFlowDesktop.py   # 主程序入口
 ├── requirements.txt    # 依赖列表
 └── README.md          # 项目说明
@@ -155,5 +154,5 @@ VidFlowDesktop/
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by VidFlow Team</sub>
+  <sub>Built with ❤️ by mark</sub>
 </div>
